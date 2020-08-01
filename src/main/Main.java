@@ -10,22 +10,26 @@ import javax.swing.JPanel;
 
 import main.sweeper.Box;
 import main.sweeper.Coord;
+import main.sweeper.Game;
 import main.sweeper.Ranges;
 
 public class Main extends JFrame {
-
-	private static final int IMAGE_SIZE = 50;
-	private static final int COLS = 15;
-	private static final int ROWS = 10;
-
 	private JPanel panel;
+	private Game game;
+	
+	private static final int IMAGE_SIZE = 50;
+	private static final int COLS = 9;
+	private static final int ROWS = 9;
+
 
 	public static void main(String[] args) {
+		System.out.println("Start programm");
 		new Main();
+		System.out.println("End programm");
 	}
 
 	private Main() {
-		Ranges.setSize(COLS, ROWS);
+		game = new Game(COLS, ROWS);
 		setImages();
 		initPanel();
 		initFrame();
@@ -36,9 +40,10 @@ public class Main extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				for (Box box : Box.values()) {
-					Coord coord = new Coord(box.ordinal(), 0);
-					g.drawImage((Image) box.getImage(), coord.getX() * IMAGE_SIZE, coord.getY() * IMAGE_SIZE, this);
+				for (Coord coord:Ranges.getAllCoords()) {
+					g.drawImage((Image) game.getBox(coord).getImage(), 
+							coord.getX() * IMAGE_SIZE, 
+							coord.getY() * IMAGE_SIZE, this);
 				}
 			}
 		};
@@ -66,5 +71,6 @@ public class Main extends JFrame {
 	private void setImages() {
 		for (Box box : Box.values())
 			box.setImage(getImage(box.name().toLowerCase()));
+		setIconImage(getImage("icon"));
 	}
 }
