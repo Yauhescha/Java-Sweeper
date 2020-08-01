@@ -21,13 +21,13 @@ public enum Box {
 	BOMBED,
 	NOBOMB
 	;
-	private Image image;
+	private Object image;
 
-	public Image getImage() {
+	public Object getImage() {
 		return image;
 	}
 
-	public void setImage(Image image) {
+	public void setImage(Object image) {
 		this.image = image;
 	}
 	

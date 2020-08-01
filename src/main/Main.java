@@ -34,7 +34,7 @@ public class Main extends JFrame {
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				for(Box box:Box.values())
-				g.drawImage(box.getImage(),
+				g.drawImage((Image) box.getImage(),
 						box.ordinal()*IMAGE_SIZE, 0, this);
 			}
 		};
@@ -53,7 +53,8 @@ public class Main extends JFrame {
 	}
 
 	private Image getImage(String name) {
-		ImageIcon icon = new ImageIcon("res/img/" + name + ".png");
+		String fileName="/img/" + name + ".png";
+		ImageIcon icon = new ImageIcon(getClass().getResource(fileName));
 		return icon.getImage();
 	}
 
