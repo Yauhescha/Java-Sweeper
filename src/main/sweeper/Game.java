@@ -26,6 +26,15 @@ public class Game {
 
 	public void pressLeftButton(Coord coord) {
 		openBox(coord);
+		checkWinner();
+	}
+
+	private void checkWinner() {
+		if(GameState.PLAYED==state) 
+			if(flag.getTotalClosed()==bomb.getTotalBomb()) {
+				state=GameState.WINNER;
+				flag.setFlagetToLastClosedBoxes();
+			}
 	}
 
 	private void openBox(Coord coord) {

@@ -51,6 +51,12 @@ class Flag {
 		return totalClosed;
 	}
 
+	void setFlagetToLastClosedBoxes() {
+		for(Coord coord:Ranges.getAllCoords())
+			if(Box.CLOSED==flagMap.get(coord))
+				setFlagetToBox(coord);
+	}
+
 
 }
 
