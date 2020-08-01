@@ -27,6 +27,6 @@ public class Game {
 	}
 
 	public void pressRightButton(Coord coord) {
-		flag.setFlagetToBox(coord);
+		flag.toggleFlagetToBox(coord);
 	}
 }
