@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import main.sweeper.Box;
 import main.sweeper.Coord;
+import main.sweeper.Ranges;
 
 public class Main extends JFrame {
 
@@ -24,6 +25,7 @@ public class Main extends JFrame {
 	}
 
 	private Main() {
+		Ranges.setSize(COLS, ROWS);
 		setImages();
 		initPanel();
 		initFrame();
@@ -41,7 +43,8 @@ public class Main extends JFrame {
 			}
 		};
 
-		panel.setPreferredSize(new Dimension(COLS * IMAGE_SIZE, ROWS * IMAGE_SIZE));
+		panel.setPreferredSize(new Dimension(Ranges.getSize().getX() * IMAGE_SIZE, 
+				Ranges.getSize().getY() * IMAGE_SIZE));
 		add(panel);
 	}
 
