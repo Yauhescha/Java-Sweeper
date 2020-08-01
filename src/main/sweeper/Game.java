@@ -66,6 +66,13 @@ public class Game {
 
 	private void openBombs(Coord bombedCoord) {
 		flag.setBombedToBox(bombedCoord);
+		for(Coord coord:Ranges.getAllCoords())
+			if(Box.BOMB==bomb.get(coord)) {
+				flag.setOpenedToCloseBox(coord);
+			}
+			else {
+				flag.setNobombToFlagetBomb(coord);
+			}
 		state = GameState.BOMBED;
 	}
 
