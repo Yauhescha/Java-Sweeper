@@ -44,10 +44,10 @@ public class Main extends JFrame {
 	}
 
 	private void initLabel() {
-		label = new JLabel("Welcome");
-		Font font = new Font("Tahoma",Font.BOLD,20);
+		label = new JLabel(getMessage());
+		Font font = new Font("Tahoma", Font.BOLD, 20);
 		label.setFont(font);
-		add(label,BorderLayout.SOUTH);
+		add(label, BorderLayout.SOUTH);
 	}
 
 	private void initPanel() {
@@ -69,18 +69,19 @@ public class Main extends JFrame {
 				int x = e.getX() / IMAGE_SIZE;
 				int y = e.getY() / IMAGE_SIZE;
 				Coord coord = new Coord(x, y);
-				
+
 				switch (e.getButton()) {
-					case MouseEvent.BUTTON1:
-						game.pressLeftButton(coord);
-						break;
-					case MouseEvent.BUTTON3:
-						game.pressRightButton(coord);
-						break;
-					case MouseEvent.BUTTON2:
-						game.start();
-						break;
+				case MouseEvent.BUTTON1:
+					game.pressLeftButton(coord);
+					break;
+				case MouseEvent.BUTTON3:
+					game.pressRightButton(coord);
+					break;
+				case MouseEvent.BUTTON2:
+					game.start();
+					break;
 				}
+				label.setText(getMessage());
 				panel.repaint();
 			}
 		});
@@ -109,5 +110,18 @@ public class Main extends JFrame {
 		for (Box box : Box.values())
 			box.setImage(getImage(box.name().toLowerCase()));
 		setIconImage(getImage("icon"));
+	}
+
+	private String getMessage() {
+		switch (game.getState()) {
+
+		case BOMBED:
+			return "Ba-Da-Boom! You lose!";
+		case WINNER:
+			return "Congratulation! All bombs have been marked!";
+		case PLAYED:
+			default:
+			return "Welcome!";
+		}
 	}
 }
