@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import main.sweeper.Box;
+import main.sweeper.Coord;
 
 public class Main extends JFrame {
 
@@ -33,9 +34,10 @@ public class Main extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				for(Box box:Box.values())
-				g.drawImage((Image) box.getImage(),
-						box.ordinal()*IMAGE_SIZE, 0, this);
+				for (Box box : Box.values()) {
+					Coord coord = new Coord(box.ordinal(), 0);
+					g.drawImage((Image) box.getImage(), coord.getX() * IMAGE_SIZE, coord.getY() * IMAGE_SIZE, this);
+				}
 			}
 		};
 
@@ -53,13 +55,13 @@ public class Main extends JFrame {
 	}
 
 	private Image getImage(String name) {
-		String fileName="/img/" + name + ".png";
+		String fileName = "/img/" + name + ".png";
 		ImageIcon icon = new ImageIcon(getClass().getResource(fileName));
 		return icon.getImage();
 	}
 
 	private void setImages() {
-		for(Box box:Box.values())
+		for (Box box : Box.values())
 			box.setImage(getImage(box.name().toLowerCase()));
 	}
 }
