@@ -30,6 +30,7 @@ public class Main extends JFrame {
 
 	private Main() {
 		game = new Game(COLS, ROWS);
+		game.start();
 		setImages();
 		initPanel();
 		initFrame();
