@@ -29,5 +29,7 @@ public enum Box {
 		this.image = image;
 	}
 	
-	
+	Box nextNumberBox() {
+		return Box.values()[this.ordinal()+1];
+	}
 }
