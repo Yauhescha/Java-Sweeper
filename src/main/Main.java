@@ -3,6 +3,8 @@ package main;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,15 +16,13 @@ import main.sweeper.Game;
 import main.sweeper.Ranges;
 
 public class Main extends JFrame {
-	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private Game game;
-	
+
 	private static final int IMAGE_SIZE = 50;
 	private static final int COLS = 9;
 	private static final int ROWS = 9;
 	private static final int BOMBS = 10;
-
 
 	public static void main(String[] args) {
 		System.out.println("Start programm");
@@ -31,7 +31,7 @@ public class Main extends JFrame {
 	}
 
 	private Main() {
-		game = new Game(COLS, ROWS,BOMBS);
+		game = new Game(COLS, ROWS, BOMBS);
 		game.start();
 		setImages();
 		initPanel();
@@ -40,21 +40,41 @@ public class Main extends JFrame {
 
 	private void initPanel() {
 		panel = new JPanel() {
-			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				for (Coord coord:Ranges.getAllCoords()) {
-					g.drawImage((Image) game.getBox(coord).getImage(), 
-							coord.getX() * IMAGE_SIZE, 
+				for (Coord coord : Ranges.getAllCoords()) {
+					g.drawImage((Image) game.getBox(coord).getImage(), coord.getX() * IMAGE_SIZE,
 							coord.getY() * IMAGE_SIZE, this);
 				}
 			}
 		};
 
-		panel.setPreferredSize(new Dimension(Ranges.getSize().getX() * IMAGE_SIZE, 
-				Ranges.getSize().getY() * IMAGE_SIZE));
+		panel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int x = e.getX() / IMAGE_SIZE;
+				int y = e.getY() / IMAGE_SIZE;
+				Coord coord = new Coord(x, y);
+				
+				switch (e.getButton()) {
+					case MouseEvent.BUTTON1:
+						game.pressLeftButton(coord);
+						break;
+					case MouseEvent.BUTTON3:
+						game.pressRightButton(coord);
+						break;
+					case MouseEvent.BUTTON2:
+						game.start();
+						break;
+				}
+				panel.repaint();
+			}
+		});
+
+		panel.setPreferredSize(
+				new Dimension(Ranges.getSize().getX() * IMAGE_SIZE, Ranges.getSize().getY() * IMAGE_SIZE));
 		add(panel);
 	}
 
