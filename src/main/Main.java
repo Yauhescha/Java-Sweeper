@@ -8,7 +8,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.sweeper.Box;
+
 public class Main extends JFrame {
+
+	private static final int IMAGE_SIZE = 50;
+	private static final int COLS = 15;
+	private static final int ROWS = 10;
 
 	private JPanel panel;
 
@@ -17,6 +23,7 @@ public class Main extends JFrame {
 	}
 
 	private Main() {
+		setImages();
 		initPanel();
 		initFrame();
 	}
@@ -26,14 +33,13 @@ public class Main extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawImage(getImage("bomb"), 0, 0, this);
-				g.drawImage(getImage("num1"), 50, 0, this);
-				g.drawImage(getImage("num1"), 0, 50, this);
-				g.drawImage(getImage("num1"), 50, 50, this);
+				for(Box box:Box.values())
+				g.drawImage(box.getImage(),
+						box.ordinal()*IMAGE_SIZE, 0, this);
 			}
 		};
-		
-		panel.setPreferredSize(new Dimension(500, 300));
+
+		panel.setPreferredSize(new Dimension(COLS * IMAGE_SIZE, ROWS * IMAGE_SIZE));
 		add(panel);
 	}
 
@@ -47,7 +53,12 @@ public class Main extends JFrame {
 	}
 
 	private Image getImage(String name) {
-		ImageIcon icon = new ImageIcon("res/img/"+name+".png");
+		ImageIcon icon = new ImageIcon("res/img/" + name + ".png");
 		return icon.getImage();
+	}
+
+	private void setImages() {
+		for(Box box:Box.values())
+			box.setImage(getImage(box.name().toLowerCase()));
 	}
 }
