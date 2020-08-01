@@ -2,8 +2,11 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Main extends JFrame {
 
@@ -23,7 +26,7 @@ public class Main extends JFrame {
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
-				g.drawLine(0, 0, 500, 300);
+				g.drawImage(getImage(), 0, 0, this);
 			}
 		};
 		
@@ -40,4 +43,8 @@ public class Main extends JFrame {
 		setLocationRelativeTo(null);
 	}
 
+	private Image getImage() {
+		ImageIcon icon = new ImageIcon("res/img/bomb.png");
+		return icon.getImage();
+	}
 }
