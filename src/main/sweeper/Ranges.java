@@ -29,8 +29,20 @@ public class Ranges {
 	static boolean inRange(Coord coord) {
 		return coord.getX() >= 0 && coord.getX() < size.getX() && coord.getY() >= 0 && coord.getY() < size.getY();
 	}
-	
+
 	public static Coord getRandomCoord() {
-			return new Coord(random.nextInt(size.getX()), random.nextInt(size.getY()));
-	} 
+		return new Coord(random.nextInt(size.getX()), random.nextInt(size.getY()));
+	}
+
+	static ArrayList<Coord> getCoordsAround(Coord coord) {
+		Coord around;
+		ArrayList<Coord> list = new ArrayList<Coord>();
+		
+		for(int x=coord.getX()-1;x<=coord.getX()+1;x++)
+			for(int y=coord.getY()-1;y<=coord.getY()+1;y++)
+				if(Ranges.inRange(around =new Coord(x, y)))
+					if(!around.equals(coord))
+						list.add(around);
+		return list;
+	}
 }

@@ -14,6 +14,7 @@ import main.sweeper.Game;
 import main.sweeper.Ranges;
 
 public class Main extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private Game game;
 	
@@ -39,6 +40,8 @@ public class Main extends JFrame {
 
 	private void initPanel() {
 		panel = new JPanel() {
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);

@@ -1,7 +1,5 @@
 package main.sweeper;
 
-import java.awt.Image;
-
 public enum Box {
 	ZERO,
 	NUM1,
