@@ -1,6 +1,8 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -8,6 +10,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.sweeper.Box;
@@ -18,6 +21,7 @@ import main.sweeper.Ranges;
 public class Main extends JFrame {
 	private JPanel panel;
 	private Game game;
+	private JLabel label;
 
 	private static final int IMAGE_SIZE = 50;
 	private static final int COLS = 9;
@@ -35,7 +39,15 @@ public class Main extends JFrame {
 		game.start();
 		setImages();
 		initPanel();
+		initLabel();
 		initFrame();
+	}
+
+	private void initLabel() {
+		label = new JLabel("Welcome");
+		Font font = new Font("Tahoma",Font.BOLD,20);
+		label.setFont(font);
+		add(label,BorderLayout.SOUTH);
 	}
 
 	private void initPanel() {
