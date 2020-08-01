@@ -121,7 +121,10 @@ public class Main extends JFrame {
 			return "Congratulation! All bombs have been marked!";
 		case PLAYED:
 			default:
-			return "Welcome!";
+				if(game.getTotalFlaget()==0)return "Welcome!";
+				return "Think twice! Flagget "
+						+game.getTotalFlaget()+" of "
+						+game.getTotalBomb();
 		}
 	}
 }

@@ -57,5 +57,11 @@ public class Game {
 	public GameState getState() {
 		return state;
 	}
+	public int getTotalBomb() {
+		return bomb.getTotalBomb();
+	}
+	public int getTotalFlaget() {
+		return flag.getTotalFlaget();
+	}
 	
 }

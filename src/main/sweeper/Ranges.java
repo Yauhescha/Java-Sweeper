@@ -45,4 +45,8 @@ public class Ranges {
 						list.add(around);
 		return list;
 	}
+
+	public static int getSquare() {
+		return size.getX()*size.getY();
+	}
 }
