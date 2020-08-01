@@ -20,6 +20,7 @@ public class Main extends JFrame {
 	private static final int IMAGE_SIZE = 50;
 	private static final int COLS = 9;
 	private static final int ROWS = 9;
+	private static final int BOMBS = 10;
 
 
 	public static void main(String[] args) {
@@ -29,7 +30,7 @@ public class Main extends JFrame {
 	}
 
 	private Main() {
-		game = new Game(COLS, ROWS);
+		game = new Game(COLS, ROWS,BOMBS);
 		game.start();
 		setImages();
 		initPanel();
