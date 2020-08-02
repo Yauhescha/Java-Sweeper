@@ -64,6 +64,8 @@ public class Game {
 				flag.setOpenedToBox(coord);
 				break;
 			}
+		default:
+			break;
 
 		}
 	}
